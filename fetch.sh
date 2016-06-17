@@ -9,10 +9,10 @@ cap_id="ctl00_ContentPlaceHolder1_tbCap"
 comune_name='ctl00$ContentPlaceHolder1$tbComune'
 comune_id="ctl00_ContentPlaceHolder1_tbComune"
 
-cap_value="24022"
-comune_value="Alzano Lombardo"
+cap_value=$2 # 24022
+comune_value=$1 # Alzano Lombardo
 
-page=$(curl GET $url | grep -E "__VIEWSTATE|__EVENTVALIDATION" | cut -d" " -f5 | sed 's/^value="//' | sed 's/"$//')
+page=$(curl --silent GET $url | grep -E "__VIEWSTATE|__EVENTVALIDATION" | cut -d" " -f5 | sed 's/^value="//' | sed 's/"$//')
 
 # echo page
 # echo $page
@@ -35,6 +35,7 @@ __EVENTVALIDATION=$(echo $page | cut -d" " -f2)
 # echo $__EVENTVALIDATION
 # echo
 
-curl -X $method --form "$cap_name=$cap_value" --form "$comune_name=$comune_value" --form "__VIEWSTATE=$__VIEWSTATE" --form "__EVENTVALIDATION=$__EVENTVALIDATION" $url
+page=$(curl --silent -X $method --form "$cap_name=$cap_value" --form "$comune_name=$comune_value" --form "__VIEWSTATE=$__VIEWSTATE" --form "__EVENTVALIDATION=$__EVENTVALIDATION" $url)
 
+echo $page | hxnormalize -x | hxselect -i "#ctl00_ContentPlaceHolder1_GridView1 > tbody:nth-child(2) > tr" | lynx -stdin -dump # | tail -n +2 | head -n -8
 
