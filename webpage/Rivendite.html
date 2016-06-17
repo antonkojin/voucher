@@ -1,0 +1,113 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><title>
+	Rivendite
+</title><meta http-equiv="content-type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="Rivendite_files/VoucherInps.css"></head>
+
+<body style="height:100%" onmousedown="disable()" onkeydown="onKeyDown()" onload="">
+<script language="JavaScript" type="text/javascript">
+function flasher() { 
+    if(document.getElementById("flashMe")) { 
+
+    var d = document.getElementById("flashMe") ; 
+
+    d.style.color= (d.style.color=='red'?'blue':'red'); 
+    d.style.fontSize= (d.style.fontSize=='50px'?'45px':'50px'); 
+
+    setTimeout('flasher()', 600); }
+
+}
+function onKeyDown() {
+  // current pressed key
+  var pressedKey = String.fromCharCode(event.keyCode).toLowerCase();
+
+  if (event.ctrlKey && (pressedKey == "c" || 
+                        pressedKey == "v")) {
+    // disable key press porcessing
+    event.returnValue = false;
+  }
+
+} // onKeyDown
+
+
+function disable()
+{
+if (event.button == 2)
+  {
+  alert("Spiacenti, ma il tasto destro è disabilitato!");
+  }
+}
+
+var defaultMsg = 'Buon Lavoro';
+var boodschap = defaultMsg; 
+
+function dgstatus()
+{
+      window.status = boodschap;
+	  timerID = setTimeout("dgstatus()", 1);
+}
+
+dgstatus();
+</script>
+<div id="container">
+  <div id="header">
+	<img src="Rivendite_files/FIT_col_bandiera2.jpg" alt="" class="logosx">&nbsp;
+  </div>
+ <div id="content">
+      <form name="aspnetForm" method="post" action="VistaAdesioni.aspx" id="aspnetForm">
+<div>
+<input name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTgyMjc2ODU5Nw9kFgJmD2QWAgIDD2QWAgIBD2QWBgIJDw8WAh4EVGV4dAUKMTYvMDYvMjAxNmRkAgsPPCsADQEADxYEHgtfIUl0ZW1Db3VudGYeC18hRGF0YUJvdW5kZ2RkAg0PD2QPEBYDZgIBAgIWAxYCHg5QYXJhbWV0ZXJWYWx1ZQUCTk8WAh8DZRYCHwNlFgMCBWZmZGQYAgUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFgEFJmN0bDAwJENvbnRlbnRQbGFjZUhvbGRlcjEkSW1hZ2VCdXR0b24xBSNjdGwwMCRDb250ZW50UGxhY2VIb2xkZXIxJEdyaWRWaWV3MQ88KwAKAQhmZMwoFAyRXY3JYs9DkV3ejMlo7igN" type="hidden">
+</div>
+
+<div>
+
+	<input name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWBALIz+SqCwLGn+kZAv6TqZYBAr28ifwM/IbG/fzNPry42IB1vrmIWYwKVkU=" type="hidden">
+</div>
+       
+    <table border="0" width="100%">
+    <tbody><tr height="10px"></tr>
+        <tr align="center" height="100px" valign="middle">
+        <td id="td1" colspan="2" align="center">
+            <span class="filtra" style="font-size:50px;text-align:center;visibility:hidden" id="flashMe">Elenco in fase di aggiornamento</span> 
+       </td>
+    </tr>
+      <tr>
+        <td id="tdRicerca" colspan="2">
+            <span class="filtra">Cerca la Rivendita più vicina per:</span> 
+        </td>
+      </tr>
+      <tr>
+        <td style="width:80%">
+             <span class="labelRicerca">CAP</span>
+          <input name="ctl00$ContentPlaceHolder1$tbCap" maxlength="5" id="ctl00_ContentPlaceHolder1_tbCap" style="width:50px;" type="text">
+             <span class="labelRicerca">Comune</span>
+          <input name="ctl00$ContentPlaceHolder1$tbComune" id="ctl00_ContentPlaceHolder1_tbComune" style="width:300px;" type="text">&nbsp;
+
+      <input name="ctl00$ContentPlaceHolder1$ImageButton1" id="ctl00_ContentPlaceHolder1_ImageButton1" title="Cerca" class="buttonCerca" src="Rivendite_files/find.gif" style="border-width:0px;" type="image">
+            
+    </td>
+<td>
+             <span class="labelRicerca"> Aggiornato al </span><span id="ctl00_ContentPlaceHolder1_lblDataAgg" class="labelRicerca">16/06/2016</span>
+</td>
+     </tr>
+      <tr>
+        <td id="tdGridView" colspan="2">
+      <div>
+	<table rules="all" id="ctl00_ContentPlaceHolder1_GridView1" style="width:100%;border-collapse:collapse;" cellspacing="0" border="1">
+		<caption>
+			Rivendite autorizzate al servizio di voucher Inps svolto con Banca ITB
+		</caption><tbody><tr>
+			<td>Nessuna Rivendita Trovata</td>
+		</tr>
+	</tbody></table>
+</div>
+            
+       </td>
+     </tr>
+    </tbody></table>
+
+      </form>
+  </div>
+</div>
+
+
+</body></html>
