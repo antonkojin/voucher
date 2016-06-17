@@ -1,3 +1,4 @@
+webpage/
 *.html
 
 # Byte-compiled / optimized / DLL files
@@ -89,3 +90,4 @@ ENV/
 
 # Rope project settings
 .ropeproject
+>>>>>>> hotfix/0.0
