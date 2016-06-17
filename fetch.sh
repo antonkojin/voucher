@@ -14,26 +14,26 @@ comune_value="Alzano Lombardo"
 
 page=$(curl GET $url | grep -E "__VIEWSTATE|__EVENTVALIDATION" | cut -d" " -f5 | sed 's/^value="//' | sed 's/"$//')
 
-echo page
-echo $page
-echo
+# echo page
+# echo $page
+# echo
 
-echo page lines
-while read -r line; do
-    echo "$line"
-		echo
-done <<< "$page"
+# echo page lines
+# while read -r line; do
+#     echo "$line"
+#		echo
+#done <<< "$page"
 
 
 __VIEWSTATE=$(echo $page | cut -d" " -f1)
 __EVENTVALIDATION=$(echo $page | cut -d" " -f2)
 
-echo __VIEWSTATE
-echo $__VIEWSTATE
-echo
-echo __EVENTVALIDATION
-echo $__EVENTVALIDATION
-echo
+# echo __VIEWSTATE
+# echo $__VIEWSTATE
+# echo
+# echo __EVENTVALIDATION
+# echo $__EVENTVALIDATION
+# echo
 
 curl -X $method --form "$cap_name=$cap_value" --form "$comune_name=$comune_value" --form "__VIEWSTATE=$__VIEWSTATE" --form "__EVENTVALIDATION=$__EVENTVALIDATION" $url
 
