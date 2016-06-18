@@ -11,4 +11,7 @@ import scrapy
 class TabaccaiItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    pass
+    indirizzo = scrapy.Field()
+    cap = scrapy.Field()
+    comune = scrapy.Field()
+    provincia = scrapy.Field()
