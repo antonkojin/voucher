@@ -90,5 +90,5 @@ ENV/
 
 # Rope project settings
 .ropeproject
->>>>>>> hotfix/0.0
 .idea/
+*.pyc
