@@ -8,7 +8,7 @@
 import scrapy
 
 
-class TabaccaiItem(scrapy.Item):
+class Address(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
     indirizzo = scrapy.Field()
