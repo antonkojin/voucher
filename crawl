@@ -1,0 +1,4 @@
+#!/bin/bash
+
+cd tabaccai
+scrapy crawl --nolog --output=- --output-format=json  addresses
