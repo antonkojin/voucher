@@ -92,3 +92,4 @@ ENV/
 .ropeproject
 .idea/
 *.pyc
+sample-milano.json

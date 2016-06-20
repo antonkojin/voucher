@@ -12,20 +12,25 @@ class AddressesSpider(scrapy.Spider):
     def parse(self, response):
         formdata = {
             "ctl00$ContentPlaceHolder1$tbCap": "",
-            "ctl00$ContentPlaceHolder1$tbComune": comune
+            "ctl00$ContentPlaceHolder1$tbComune": comune,
         }
         form_request = scrapy.FormRequest.from_response(response, formdata=formdata, callback=self.after_query)
         self.logger.info("form request: %s", form_request.body)
         return form_request
 
     def after_query(self, response):
-        items = []
-        items = items + self.parse_tabaccai(response)
-        pages = response.xpath("//table[@id='ctl00_ContentPlaceHolder1_GridView1']/tr[@class=pager]//a/text()")
+        requests = []
+        requests.append(scrapy.FormRequest.from_response(response, callback=self.parse_tabaccai))
+        pages = response.xpath("//table[@id='ctl00_ContentPlaceHolder1_GridView1']/tr[@class='pager']//a/text()")
         for page in pages:
-            # TODO
-            pass
-        return items
+            formdata = {
+                "__EVENTTARGET": "ctl00$ContentPlaceHolder1$GridView1",
+                "__EVENTARGUMENT": "Page$" + page.extract()
+            }
+            self.logger.info("request page: %s", page)
+            requests.append(scrapy.FormRequest.from_response(response, formdata=formdata, callback=self.parse_tabaccai))
+        self.logger.debug("requests: " +  str(map( (lambda form: form.body), requests )))
+        return requests
 
     def parse_tabaccai(self, response):
         trs = response.xpath("//table[@id='ctl00_ContentPlaceHolder1_GridView1']/tr")
