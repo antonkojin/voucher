@@ -1,4 +1,4 @@
 #!/bin/bash
 
 cd tabaccai
-scrapy crawl --nolog --output=- --output-format=json  addresses
+scrapy crawl --nolog --output=- --output-format=json -a comune=$1  addresses
